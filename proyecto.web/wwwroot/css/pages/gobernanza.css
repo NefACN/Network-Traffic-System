@@ -1,0 +1,151 @@
+/* gobernanza de simulaciones e incidentes reportados */
+.gov-form {
+    display: grid;
+    gap: 12px;
+}
+
+.gov-form textarea, .inc-update textarea {
+    width: 100%;
+}
+
+.inc-cards {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.inc-cards .results-card {
+    padding: 16px;
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+.inc-cards .results-card span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.inc-cards .results-card strong {
+    display: block;
+    font-size: 24px;
+    margin-top: 6px;
+}
+
+.inc-filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.inc-wrap {
+    white-space: normal !important;
+    min-width: 220px;
+}
+
+.inc-timeline {
+    padding-left: 18px;
+    line-height: 1.6;
+}
+
+.inc-timeline li {
+    margin-bottom: 10px;
+}
+
+.inc-timeline p {
+    margin: 4px 0 0;
+}
+
+.inc-update {
+    border-top: 1px solid var(--line);
+    margin-top: 16px;
+    padding-top: 12px;
+    display: grid;
+    gap: 10px;
+}
+
+.results-pages {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+[data-page="gobernanza"] .chip, [data-page="incidentes"] .chip {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 100px;
+}
+
+.chip.nist-alta {
+    background: var(--error-tint);
+    color: var(--error);
+}
+
+.chip.nist-media {
+    background: var(--brass-tint);
+    color: var(--brass-dark);
+}
+
+.chip.nist-baja {
+    background: var(--success-tint);
+    color: var(--success);
+}
+
+.chip.is-muted {
+    background: var(--paper);
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+    .inc-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .inc-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .inc-cards .results-card strong {
+        font-size: 20px;
+    }
+}
+
+.inc-update .form-error:empty {
+    display: none;
+}
+
+.suggestion {
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.suggestion p {
+    margin: 6px 0 0;
+    white-space: normal;
+}
+
+.suggestion .row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 620px) {
+    .suggestion {
+        flex-direction: column;
+    }
+
+    .suggestion .row-actions {
+        justify-content: flex-start;
+    }
+}

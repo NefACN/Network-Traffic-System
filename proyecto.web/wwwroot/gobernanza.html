@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gobernanza de simulaciones · DISMATEC</title>
+<link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css"><link rel="stylesheet" href="css/pages/aprendizaje.css"><link rel="stylesheet" href="css/pages/gobernanza.css">
+<script src="/app-config.js"></script><script type="module" src="js/app.js"></script></head>
+<body data-page="gobernanza" data-theme="admin" data-title="Gobernanza de simulaciones"><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button><aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside><div class="dash-main"><header class="dash-topbar" data-shell-header></header><main class="dash-content" id="contenido">
+<section class="page-heading"><div><p class="eyebrow">SIMULACIONES ÉTICAS Y NO PUNITIVAS</p><h1>Gobernanza de simulaciones</h1><p>Define quién aprueba, cuándo se envía, cuántas simulaciones recibe cada persona y qué temas no se usan como pretexto.</p></div></section>
+<p id="gobernanza-error" class="page-notice hidden" role="alert"></p>
+<section class="panel"><div class="panel-heading"><h2>Política ética</h2><span class="panel-caption" id="gobernanza-revision"></span></div>
+<form id="form-gobernanza" class="gov-form">
+<label class="quiz-option"><input type="checkbox" id="gov-aprobacion">Aprobación en dos pasos: un administrador distinto de quien crea o solicita la campaña debe aprobarla antes del envío</label>
+<label class="quiz-option"><input type="checkbox" id="gov-ventana">Restringir el inicio de envíos a una ventana horaria (hora de Bolivia)</label>
+<div class="form-grid">
+<label>Desde la hora<input id="gov-inicio" type="number" min="0" max="23" required></label>
+<label>Hasta la hora (exclusiva)<input id="gov-fin" type="number" min="1" max="24" required></label>
+<label class="quiz-option"><input type="checkbox" id="gov-habiles">Solo de lunes a viernes</label>
+<label>Máximo de simulaciones por persona cada 30 días (0 = sin límite)<input id="gov-maximo" type="number" min="0" max="30" required></label>
+<label>Tamaño mínimo de grupo visible para gerentes<input id="gov-umbral" type="number" min="1" max="50" required></label>
+</div>
+<label>Pretextos prohibidos (uno por línea). Se detectan sin importar mayúsculas, tildes ni plurales.<textarea id="gov-pretextos" rows="6"></textarea></label>
+<p class="panel-caption" id="gov-ventana-estado" role="status"></p>
+<div><button class="btn btn-primary" type="submit">Guardar política</button></div>
+</form>
+<p class="panel-caption">Enfoque no punitivo: las simulaciones existen para aprender. Sus resultados no se usan para sanciones ni evaluaciones de desempeño; los gerentes solo ven agregados de grupos suficientemente grandes. Cada cambio queda en la auditoría.</p>
+</section>
+<section class="panel"><div class="panel-heading"><h2>Lista de exclusión</h2><label class="quiz-option"><input type="checkbox" id="gov-historial">Mostrar exclusiones vencidas o revocadas</label></div>
+<p class="panel-caption">Excluye temporalmente a personas con licencia, vacaciones o que acaban de vivir un incidente real. No se les envían simulaciones mientras la exclusión esté vigente. La nota es opcional y no se copia a la auditoría.</p>
+<form id="form-exclusion" class="form-grid">
+<label>Colaborador<select id="exc-usuario" required></select></label>
+<label>Motivo<select id="exc-motivo" required><option value="licencia">Licencia</option><option value="vacaciones">Vacaciones</option><option value="incidente_reciente">Incidente real reciente</option><option value="solicitud">Solicitud de la persona o su jefatura</option><option value="otro">Otro</option></select></label>
+<label>Desde<input id="exc-desde" type="date"></label>
+<label>Hasta (opcional)<input id="exc-hasta" type="date"></label>
+<label>Nota (opcional)<input id="exc-nota" maxlength="200"></label>
+<div><button class="btn btn-primary" type="submit">Excluir</button></div>
+</form>
+<div class="table-scroll"><table class="event-table"><thead><tr><th>Colaborador</th><th>Motivo</th><th>Vigencia</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="exclusiones-body"></tbody></table></div>
+</section>
+</main></div></div>
+</body></html>

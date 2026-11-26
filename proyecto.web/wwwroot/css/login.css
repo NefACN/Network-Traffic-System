@@ -1,0 +1,653 @@
+/* entrada compartida para todos los roles: portada a la izquierda y formulario a la derecha */
+@font-face {
+    font-family: "Spectral";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/spectral-500-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Spectral";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/spectral-700-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) {
+    --cover: #1f3a8a;
+    --cover-deep: #172c6b;
+    --sheen: #dbe4ff;
+    --ink-violet: #5b3fa8;
+    --paper: #f4f5fb;
+    --paper-2: #ffffff;
+    --text: #1c2033;
+    --text-muted: #565c72;
+    --line: #d9dceb;
+    --brass: #1f3a8a;
+    --brass-dark: #172c6b;
+    --brass-tint: #e7ecf8;
+    --font-display: "Spectral", Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--text);
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) ::selection {
+    background: #cdd8f6;
+    color: var(--text);
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .screen {
+    grid-template-columns: minmax(340px, 44%) 1fr;
+    padding: 0;
+}
+
+/* portada */
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .login-cover {
+    isolation: isolate;
+    padding: 48px 56px;
+    background:
+        repeating-radial-gradient(circle at 12% 88%, transparent 0 15px, rgb(219 228 255 / .10) 15px 16px),
+        repeating-radial-gradient(circle at 96% 8%, transparent 0 19px, rgb(219 228 255 / .07) 19px 20px),
+        var(--cover);
+    color: #f6f8ff;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .login-cover::after {
+    content: "";
+    position: absolute;
+    inset: 22px;
+    z-index: -1;
+    pointer-events: none;
+    border: 1px solid rgb(219 228 255 / .35);
+    border-radius: 18px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__mark {
+    margin: 0;
+    color: var(--sheen);
+    font: 700 20px var(--font-display);
+    letter-spacing: 3px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__mark span {
+    color: #c3cdef;
+    font: 400 13px "Segoe UI", system-ui, sans-serif;
+    letter-spacing: .5px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__copy {
+    margin: 0;
+    max-width: 12ch;
+    color: #fff;
+    font: 700 clamp(40px, 4.6vw, 64px)/1.04 var(--font-display);
+    letter-spacing: -.02em;
+    text-wrap: balance;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__foot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: #c3cdef;
+    font-size: 13px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__foot svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    color: var(--sheen);
+}
+
+/* formulario */
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .task-panel {
+    justify-content: center;
+    padding: 48px 7%;
+    background: var(--paper);
+}
+
+.login-stack {
+    width: 100%;
+    max-width: 420px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .task-panel__inner {
+    max-width: none;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .view h1 {
+    margin-bottom: 10px;
+    color: var(--cover);
+    font: 700 36px/1.15 var(--font-display);
+    letter-spacing: -.01em;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .view .lede {
+    margin-bottom: 32px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .field {
+    margin-bottom: 22px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .field label {
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .field input {
+    min-height: 50px;
+    padding: 13px 14px;
+    border: 1px solid #c9cde0;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font-size: 15px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .password-field input {
+    padding-right: 56px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) input::placeholder {
+    color: #767c93;
+    font-size: 14px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) input:focus-visible {
+    outline: none;
+    border-color: var(--cover);
+    box-shadow: 0 0 0 3px rgb(31 58 138 / .16);
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .password-toggle {
+    width: 48px;
+    color: var(--cover);
+    font-weight: 600;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .btn {
+    min-height: 50px;
+    border-radius: 10px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .btn-primary {
+    width: 100%;
+    margin-top: 6px;
+    background: var(--cover);
+    border: 1px solid var(--cover);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgb(23 44 107 / .18);
+    transition: background-color .15s ease;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .btn-primary:hover {
+    background: var(--cover-deep);
+    border-color: var(--cover-deep);
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .btn-ghost {
+    border: 1px solid #c9cde0;
+    background: #fff;
+    color: var(--cover);
+}
+
+.login-arrow {
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .link-row {
+    justify-content: center;
+    gap: 12px 20px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .as-link,
+:is(body[data-page="login"], body[data-page="recuperar-password"]) .back-link {
+    color: var(--cover);
+    text-underline-offset: 3px;
+}
+
+:is(body[data-page="login"], body[data-page="recuperar-password"]) button:focus-visible,
+:is(body[data-page="login"], body[data-page="recuperar-password"]) a:focus-visible {
+    outline: 2px solid var(--cover);
+    outline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .screen {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .login-cover {
+        min-height: 0;
+        padding: 30px 28px 34px;
+        gap: 18px;
+    }
+
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .login-cover::after {
+        inset: 12px;
+        border-radius: 14px;
+    }
+
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__copy {
+        font-size: 34px;
+        max-width: 16ch;
+    }
+
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .brand-panel__foot {
+        display: none;
+    }
+
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .task-panel {
+        align-items: flex-start;
+        padding: 32px 22px 40px;
+    }
+
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) .view h1 {
+        font-size: 30px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :is(body[data-page="login"], body[data-page="recuperar-password"]) * {
+        transition: none !important;
+    }
+}
+
+/* tema propio del login, recuperar contrasena conserva el suyo */
+body[data-page="login"] {
+    --watch-paper: #0b1220;
+    --watch-line: #253247;
+    --watch-text: #edf2fa;
+    --watch-muted: #99a8be;
+    --accent: #8fe6be;
+    --accent-ink: #0c2c22;
+    --paper: #eceef8;
+    --paper-2: #fdfdff;
+    --text: #1c2033;
+    --text-muted: #565c72;
+    --line: #c9cde0;
+    --font-display: 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--font-display);
+    color-scheme: light;
+}
+
+body[data-page="login"] ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+body[data-page="login"] .screen {
+    grid-template-columns: minmax(0, 48%) minmax(0, 1fr);
+    padding: 0;
+}
+
+body[data-page="login"] .login-cover {
+    display: flex;
+    min-width: 0;
+    min-height: 100dvh;
+    gap: 40px;
+    padding: clamp(28px, 4vw, 64px);
+    background: var(--watch-paper);
+    color: var(--watch-text);
+}
+
+body[data-page="login"] .login-cover::after {
+    content: none;
+}
+
+body[data-page="login"] .login-cover::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    pointer-events: none;
+    background-image: linear-gradient(rgb(11 18 32 / .48), rgb(11 18 32 / .48)), url("../images/login-watch-room-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: watch-background-arrive 250ms ease-out both;
+}
+
+body[data-page="login"] .brand-panel__mark {
+    color: var(--watch-text);
+    font: 650 22px/1.2 var(--font-display);
+    letter-spacing: .04em;
+}
+
+body[data-page="login"] .brand-panel__copy {
+    max-width: 15ch;
+    color: var(--watch-text);
+    font: 650 clamp(30px, 3.1vw, 46px)/1.15 var(--font-display);
+    letter-spacing: -.03em;
+}
+
+.watch-room {
+    margin-block: auto;
+}
+
+.watch-room__intro {
+    max-width: 43ch;
+    margin: 20px 0 0;
+    color: var(--watch-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    text-wrap: pretty;
+}
+
+body[data-page="login"] .watch-room__intro {
+    color: #c5d0df;
+}
+
+.watch-room__cycle {
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid rgb(237 242 250 / .24);
+    color: #c5d0df;
+    font-size: 12px;
+}
+
+body[data-page="login"] .brand-panel__foot {
+    color: var(--watch-muted);
+    font-size: 12px;
+}
+
+body[data-page="login"] .brand-panel__foot svg {
+    color: var(--watch-muted);
+}
+
+body[data-page="login"] .task-panel {
+    padding: 56px clamp(24px, 5vw, 80px);
+    background: var(--paper);
+}
+
+body[data-page="login"] .login-stack {
+    max-width: 464px;
+}
+
+body[data-page="login"] .task-panel__inner {
+    padding: 36px 32px 28px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: var(--paper-2);
+    box-shadow: none;
+}
+
+body[data-page="login"] .view.is-active {
+    animation: login-arrive 200ms ease-out;
+}
+
+body[data-page="login"] .view h1 {
+    color: var(--watch-paper);
+    font: 650 clamp(28px, 2.5vw, 36px)/1.2 var(--font-display);
+    letter-spacing: -.03em;
+    text-wrap: balance;
+}
+
+body[data-page="login"] .view .lede {
+    font-size: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+}
+
+body[data-page="login"] .field {
+    margin-bottom: 22px;
+}
+
+body[data-page="login"] .field label {
+    color: var(--watch-paper);
+    font-size: 13px;
+    letter-spacing: 0;
+}
+
+body[data-page="login"] .field input {
+    background: #f4f5fc;
+    border: 1px solid #a7afc4;
+    border-radius: 7px;
+    min-height: 48px;
+    font: 400 16px/1.4 var(--font-display);
+    caret-color: var(--accent-ink);
+    box-shadow: none;
+    transition: none;
+}
+
+body[data-page="login"] input::placeholder {
+    color: #656b80;
+}
+
+body[data-page="login"] .field input:focus {
+    border-color: var(--cover);
+    outline: 2px solid var(--cover);
+    outline-offset: 3px;
+    box-shadow: none;
+}
+
+body[data-page="login"] .password-toggle {
+    color: var(--cover);
+    min-width: 48px;
+    min-height: 44px;
+    border-radius: 7px;
+}
+
+body[data-page="login"] .password-toggle:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+body[data-page="login"] .btn {
+    border-radius: 7px;
+    box-shadow: none;
+    min-height: 48px;
+    transition: none;
+}
+
+body[data-page="login"] .btn-primary,
+body[data-page="login"] .btn-primary:hover {
+    background: var(--accent);
+    border: 1px solid var(--accent-ink);
+    color: var(--accent-ink);
+    box-shadow: none;
+    filter: none;
+}
+
+body[data-page="login"] .btn-label,
+body[data-page="login"] .login-arrow {
+    transition: transform 180ms ease-out, opacity 180ms ease-out;
+}
+
+body[data-page="login"] .btn-primary:hover:not(:disabled) .login-arrow {
+    transform: translateX(3px);
+}
+
+body[data-page="login"] .btn-primary:hover:not(:disabled) .btn-label {
+    opacity: .8;
+}
+
+body[data-page="login"] .btn-primary:active:not(:disabled) .btn-label {
+    transform: translateY(1px);
+}
+
+body[data-page="login"] .btn-primary:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+body[data-page="login"] .link-row {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: 0;
+}
+
+body[data-page="login"] :is(.as-link, .back-link) {
+    color: var(--cover);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+}
+
+body[data-page="login"] :is(button, a):focus-visible {
+    outline: 2px solid var(--cover);
+    outline-offset: 4px;
+}
+
+body[data-page="login"] .field-error {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #a52335;
+}
+
+body[data-page="login"] .field.has-error input {
+    border-color: #a52335;
+}
+
+body[data-page="login"] .notice {
+    border-radius: 7px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+body[data-page="login"] .notice-error {
+    background: #fff2f3;
+    color: #a52335;
+    border: 1px solid #d9a2aa;
+}
+
+body[data-page="login"] .method-option {
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--paper-2);
+    color: var(--text);
+    transition: none;
+}
+
+body[data-page="login"] .method-option:is(:hover, .is-selected) {
+    border-color: var(--accent-ink);
+    background: #e4eee9;
+}
+
+body[data-page="login"] .method-option__icon {
+    background: var(--paper);
+    color: var(--text-muted);
+}
+
+body[data-page="login"] .code-input {
+    font-family: 'Cascadia Code', Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+}
+
+body[data-page="login"] .spinner {
+    animation: login-pending 200ms ease-out alternate infinite;
+    border-color: currentColor;
+}
+
+@keyframes login-arrive {
+    from {
+        opacity: .65;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes watch-background-arrive {
+    from {
+        opacity: .85;
+        transform: translateY(2px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes login-pending {
+    from {
+        opacity: .4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 860px) {
+    body[data-page="login"] .screen {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+    }
+
+    body[data-page="login"] .login-cover {
+        min-height: 0;
+        padding: 28px;
+        gap: 24px;
+    }
+
+    body[data-page="login"] .brand-panel__copy {
+        max-width: 23ch;
+        font-size: 28px;
+    }
+
+    .watch-room__intro {
+        margin-top: 12px;
+        max-width: 55ch;
+    }
+
+    .watch-room__cycle {
+        padding-top: 16px;
+    }
+
+    body[data-page="login"] .task-panel {
+        align-items: flex-start;
+        padding: 36px 24px 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    body[data-page="login"] .task-panel {
+        padding: 24px 16px 32px;
+    }
+
+    body[data-page="login"] .task-panel__inner {
+        padding: 28px 20px 20px;
+    }
+
+    body[data-page="login"] .view h1 {
+        font-size: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body[data-page="login"] *, body[data-page="login"] *::before, body[data-page="login"] *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
