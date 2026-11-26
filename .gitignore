@@ -36,5 +36,5 @@ agente-http/.data/
 /odd/
 /.impeccable/
 
-
 *.md
+!/README.md
