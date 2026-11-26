@@ -1,0 +1,223 @@
+/* panel del colaborador: pestanas, siguiente paso y CyberScore resumido */
+.learn-tabs {
+    scroll-margin-top: 96px;
+    display: flex;
+    gap: 6px;
+    margin: 4px 0 20px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--paper-2);
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.learn-tabs button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 auto;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.learn-tabs button .ui-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.learn-tabs button:hover {
+    color: var(--text);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.learn-tabs button[aria-selected="true"] {
+    color: var(--text-on-ink, #fff);
+    background: var(--ink);
+}
+
+.tab-count {
+    min-width: 20px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: #d64550;
+    color: #fff;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.learn-panel[hidden] {
+    display: none !important;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.home-score .eyebrow {
+    margin-bottom: 12px;
+}
+
+.home-score-body {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.home-score {
+    --cs: var(--cs-none, #8a96a8);
+}
+
+.home-score .cyberscore-gauge {
+    width: 112px;
+    flex-shrink: 0;
+}
+
+.home-score.is-low {
+    --cs: var(--cs-low);
+}
+
+.home-score.is-medium {
+    --cs: var(--cs-medium);
+}
+
+.home-score.is-high {
+    --cs: var(--cs-high);
+}
+
+.home-score.is-critical {
+    --cs: var(--cs-critical);
+}
+
+.home-score .cyberscore-gauge {
+    background: radial-gradient(closest-side, var(--paper-2, #fff) 78%, transparent 79%), conic-gradient(var(--cs) calc(var(--score) * 1%), color-mix(in srgb, var(--cs) 15%, transparent) 0);
+}
+
+.home-score .cyberscore-gauge strong {
+    font-size: 32px;
+    color: var(--cs);
+}
+
+.home-score h2 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: var(--cs, var(--text));
+}
+
+.home-score p {
+    margin: 0 0 8px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+}
+
+.todo-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.todo-item, .todo-done {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.todo-item.is-urgent {
+    border-left: 4px solid #d64550;
+}
+
+.todo-item strong, .todo-done strong {
+    display: block;
+}
+
+.todo-item small, .todo-done small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    margin-top: 2px;
+}
+
+.todo-item .btn {
+    flex-shrink: 0;
+}
+
+.todo-done {
+    flex-direction: column;
+    align-items: flex-start;
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.todo-more {
+    text-align: center;
+}
+
+.home-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.home-foot .commitment h2 {
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.home-foot .commitment p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--text-muted);
+}
+
+.subheading {
+    margin: 20px 0 10px;
+    font-size: 15px;
+}
+
+.learn-panel > .panel + .panel, .learn-panel > section + section {
+    margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+    .home-grid, .home-foot {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .learn-tabs button {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+    }
+
+    .todo-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-score-body {
+        flex-direction: column;
+        text-align: center;
+    }
+}

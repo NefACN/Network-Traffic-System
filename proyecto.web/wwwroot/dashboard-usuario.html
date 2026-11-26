@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi aprendizaje · DISMATEC</title>
+    <meta name="referrer" content="no-referrer">
+    <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/pages/aprendizaje.css"><link rel="stylesheet" href="css/pages/cyberscore.css"><link rel="stylesheet" href="css/pages/colaborador.css"><link rel="stylesheet" href="css/pages/pasaporte.css">
+    <script src="/app-config.js"></script><script type="module" src="js/app.js"></script>
+</head>
+<body data-page="dashboard-usuario" data-theme="employee" data-title="Mi aprendizaje">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button>
+<aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside>
+<div class="dash-main"><header class="dash-topbar" data-shell-header></header>
+<main class="dash-content learning-content" id="contenido">
+    <section class="learning-heading"><div><p class="eyebrow">TU MEJOR DEFENSA ES LO QUE SABES</p><h1>Hola, <span id="welcome-name">colaborador</span><span class="accent-dot">.</span></h1><p>Un poco de práctica hoy. Más confianza para mañana.</p></div><span class="branch-tag" id="learning-branch">Mi aprendizaje</span></section>
+    <div id="learning-error" class="page-notice hidden" role="alert"></div>
+    <nav class="learn-tabs" role="tablist" aria-label="Secciones de mi aprendizaje">
+        <button type="button" role="tab" id="tab-btn-inicio" aria-controls="tab-inicio" data-tab="inicio"><span data-icon="grid"></span>Inicio</button>
+        <button type="button" role="tab" id="tab-btn-aprender" aria-controls="tab-aprender" data-tab="aprender"><span data-icon="book"></span>Aprender<span class="tab-count" id="tab-count-aprender" hidden></span></button>
+        <button type="button" role="tab" id="tab-btn-cyberscore" aria-controls="tab-cyberscore" data-tab="cyberscore"><span data-icon="shield"></span>Mi CyberScore</button>
+        <button type="button" role="tab" id="tab-btn-logros" aria-controls="tab-logros" data-tab="logros"><span data-icon="trophy"></span>Logros</button>
+        <button type="button" role="tab" id="tab-btn-reportar" aria-controls="tab-reportar" data-tab="reportar"><span data-icon="mail"></span>Reportar<span class="tab-count" id="tab-count-reportar" hidden></span></button>
+    </nav>
+
+    <!-- inicio: pendientes, CyberScore y progreso -->
+    <section class="learn-panel" id="tab-inicio" role="tabpanel" aria-labelledby="tab-btn-inicio">
+        <div class="home-grid">
+            <section class="panel home-todo" aria-labelledby="home-todo-title"><div class="panel-heading"><h2 id="home-todo-title">Lo siguiente para ti</h2><span class="subtle-tag" id="home-todo-count"></span></div><ol id="home-todo" class="todo-list"><li class="empty-state">Revisando tus pendientes…</li></ol></section>
+            <aside class="panel home-passport" aria-label="Mi pasaporte">
+                <section class="home-score" id="home-score" aria-label="Mi CyberScore"><p class="empty-state">Calculando tu CyberScore…</p></section>
+                <p class="passport-promise">Las simulaciones existen para aprender, no para sancionar.</p>
+                <section class="passport-stamps" aria-labelledby="home-stamps-title"><h3 id="home-stamps-title">Tus sellos</h3><div class="stamp-row"><div id="home-stamps" class="stamp-row-earned"></div><div id="home-next-stamp"></div></div><button class="text-action" type="button" data-go-tab="logros">Ver mi colección</button></section>
+                <dl class="passport-fields" aria-label="Mi progreso">
+                    <div><dt>Mis puntos educativos</dt><dd id="learning-score">—</dd></div>
+                    <div><dt>Mis insignias</dt><dd id="learning-badges-count">—</dd></div>
+                    <div><dt>Temas practicados en total</dt><dd id="learning-practiced">—</dd></div>
+                </dl>
+                <p class="passport-caption" id="learning-progress-caption">Consultando tus cursos</p>
+                <div class="passport-level"><h3 id="journey-level">Tu nivel de aprendizaje</h3><progress id="journey-progress" value="0" max="100" aria-label="Avance al siguiente nivel"></progress><p id="journey-next">Completa actividades para avanzar.</p></div>
+            </aside>
+        </div>
+        <section class="panel home-goals" aria-label="Metas">
+            <div class="goal"><h3>Meta de esta semana: temas distintos</h3><strong id="weekly-count">—</strong><p id="weekly-caption">Aprende por iniciativa propia, a tu ritmo.</p></div>
+            <div class="goal"><h3>Lo que ya recorriste</h3><strong id="journey-completed">—</strong><p id="journey-weeks">Cada actividad suma conocimientos.</p><button class="text-action" type="button" data-go-tab="aprender">Elegir una actividad</button></div>
+        </section>
+        <section class="panel survey-card" id="encuesta-cultura" hidden aria-labelledby="encuesta-titulo"></section>
+        <div class="home-foot">
+            <section class="tip-card" aria-label="Un consejo para hoy"><h3><span data-icon="shield"></span>La urgencia puede ser una trampa.</h3><p>Antes de pulsar un enlace, revisa quién envía el mensaje y a dónde lleva. Si te presionan para actuar rápido, detente y confirma por otro canal.</p></section>
+            <section class="panel commitment" id="compromiso" aria-labelledby="compromiso-titulo"><h2 id="compromiso-titulo">Nuestro compromiso contigo</h2><p>Las simulaciones existen para aprender, no para sancionar. Tus resultados individuales no se usan en evaluaciones de desempeño; tu jefatura solo ve datos agregados de grupos. Equivocarte en una simulación es la forma más segura de aprender, y reportar siempre suma.</p></section>
+        </div>
+    </section>
+
+    <!-- aprender: primero lo asignado y luego lo voluntario -->
+    <section class="learn-panel" id="tab-aprender" role="tabpanel" aria-labelledby="tab-btn-aprender" hidden>
+        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">TRAS TUS SIMULACIONES</p><h2>Refuerzos pendientes</h2></div></div><div id="learning-reinforcements"><p class="empty-state">Consultando tus actividades pendientes…</p></div></section>
+        <section class="panel" id="actividades-voluntarias"><div class="panel-heading"><div><p class="eyebrow">ASIGNADAS PRIMERO · DESPUÉS, A TU ELECCIÓN</p><h2>Actividades para ti</h2></div></div><p class="section-description">Primero explora el contenido, después comprueba lo aprendido.</p><div id="unfinished-activities"></div><div id="voluntary-activities" class="course-list"><p class="empty-state">Buscando actividades publicadas…</p></div></section>
+        <section class="panel" id="mi-ruta" aria-labelledby="mi-ruta-titulo"><div class="panel-heading"><div><p class="eyebrow">LO QUE TU PUESTO REQUIERE</p><h2 id="mi-ruta-titulo">Mi ruta de aprendizaje</h2></div><span id="mi-ruta-resumen" class="subtle-tag"></span></div><div id="mi-ruta-lista"><p class="empty-state">Consultando tu ruta…</p></div></section>
+        <section id="cursos" class="panel"><div class="panel-heading"><div><p class="eyebrow">ENTRENA TU CRITERIO</p><h2>Práctica libre por tema</h2></div><span id="courses-count" class="subtle-tag">Cursos</span></div><p class="section-description">Cuestionarios breves para reconocer amenazas reales. Tú eliges por dónde empezar.</p><div id="learning-courses" class="course-list"><p class="empty-state">Preparando tus retos…</p></div></section>
+    </section>
+
+    <!-- mi CyberScore: valor, nivel y que reforzar -->
+    <section class="learn-panel" id="tab-cyberscore" role="tabpanel" aria-labelledby="tab-btn-cyberscore" hidden>
+        <section class="panel" id="mi-progreso"><div class="panel-heading"><h2>Mi CyberScore</h2></div><div id="personal-risk"><p class="empty-state">Consultando tus resultados preventivos…</p></div><div id="personal-recommendations"></div></section>
+        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">TUS SIMULACIONES RECIENTES</p><h2>Qué pasó en cada simulación</h2></div></div><div id="personal-factors"></div></section>
+        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">LO QUE YA APRENDISTE</p><h2>Capacitaciones de simulaciones</h2></div></div><div id="learning-history"><p class="empty-state">Cargando tu historial…</p></div></section>
+    </section>
+
+    <!-- logros: insignias, historial, puntos y constancias -->
+    <section class="learn-panel" id="tab-logros" role="tabpanel" aria-labelledby="tab-btn-logros" hidden>
+        <section id="logros" class="panel"><div class="panel-heading"><div><p class="eyebrow">CADA PASO CUENTA</p><h2>Tu colección de logros</h2></div><span data-icon="star"></span></div><div class="stamp-page"><div id="learning-badges" class="achievement-grid"><p class="empty-state">Buscando tus insignias…</p></div><div id="learning-slots" class="achievement-grid slot-grid"></div></div><details class="how-it-works"><summary>Cómo funcionan tus puntos, niveles, insignias y CyberScore</summary><dl><div><dt>Puntos educativos</dt><dd>Los ganas al aprobar actividades, completar refuerzos y reportar mensajes sospechosos. Nunca se descuentan.</dd></div><div><dt>Nivel</dt><dd>Subes de nivel al acumular puntos educativos. En Inicio ves cuántos te faltan para el siguiente.</dd></div><div><dt>Insignias (sellos)</dt><dd>Se desbloquean al cumplir metas concretas. Las que te faltan aparecen abajo con su avance.</dd></div><div><dt>CyberScore</dt><dd>Es independiente de los puntos: mide cómo reaccionas ante las simulaciones. Sube cuando reportas y completas refuerzos.</dd></div><div><dt>Constancias</dt><dd>Son la evidencia de las actividades que aprobaste. Puedes descargarlas y verificarlas.</dd></div></dl></details><h3 class="subheading">Próximos logros</h3><div id="badge-goals"></div></section>
+        <section class="learning-columns"><div class="learning-primary">
+            <section class="panel"><div class="panel-heading"><h2>Actividades realizadas</h2></div><div id="personal-history"></div></section>
+            <section id="mis-constancias" class="panel"><div class="panel-heading"><div><p class="eyebrow">EVIDENCIA DE LO QUE APRENDISTE</p><h2>Mis constancias</h2></div></div><div id="constancias-lista"><p class="empty-state">Consultando tus actividades aprobadas…</p></div></section>
+        </div><aside class="learning-secondary"><section class="panel"><div class="panel-heading"><h2>Movimientos de puntos</h2></div><div id="personal-points"></div></section></aside></section>
+    </section>
+
+    <!-- reportar: simulaciones y mensajes reales -->
+    <section class="learn-panel" id="tab-reportar" role="tabpanel" aria-labelledby="tab-btn-reportar" hidden>
+        <section class="panel" id="mensajes-sospechosos"><div class="panel-heading"><div><p class="eyebrow">REPORTAR SIEMPRE SUMA</p><h2>Reportar mensajes sospechosos</h2></div></div><p>Si un mensaje de esta lista te parece sospechoso, repórtalo: ganas puntos y tu CyberScore mejora. También puedes usar la opción de reporte del propio correo.</p><div id="learning-messages"><p class="empty-state">Consultando tus mensajes…</p></div></section>
+    </section>
+    <footer class="page-footer"><span>DISMATEC · Seguridad que construimos juntos</span><span>A tu ritmo. Cada día un poco mejor.</span></footer>
+</main></div></div>
+<dialog class="modal learning-dialog" id="dialog-curso" aria-labelledby="course-title"><div class="modal-head"><div><p class="eyebrow">RETO DE SEGURIDAD</p><h2 id="course-title">Tu cuestionario</h2></div><button type="button" class="modal-close" data-close-dialog="dialog-curso" aria-label="Cerrar cuestionario">×</button></div><form id="course-form"><div class="modal-body"><p id="course-instructions">Selecciona una respuesta por pregunta.</p><div id="course-questions"></div><div id="course-feedback" class="quiz-feedback hidden" role="status" aria-live="polite"></div></div><div class="modal-foot"><button type="button" class="btn btn-ghost" data-close-dialog="dialog-curso">Continuar después</button><button type="submit" class="btn btn-primary" id="course-submit" disabled>Comprobar respuestas</button></div></form></dialog>
+<dialog class="modal learning-dialog" id="activity-dialog" aria-labelledby="activity-dialog-title"><div class="modal-head"><h2 id="activity-dialog-title">Actividad educativa</h2><button type="button" class="modal-close" data-close-dialog="activity-dialog" aria-label="Cerrar actividad">×</button></div><div class="modal-body"><div id="activity-stage"></div><p id="activity-feedback" role="status" aria-live="polite"></p></div></dialog>
+</body></html>
