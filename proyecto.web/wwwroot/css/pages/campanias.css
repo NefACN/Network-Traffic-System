@@ -1,0 +1,151 @@
+.email-preview {
+    width: 100%;
+    height: 320px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: white;
+    margin-top: 12px;
+}
+
+[data-page="campanias-phishing"] .row-actions {
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+[data-page="campanias-phishing"] .row-actions .btn {
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+[data-page="campanias-phishing"] .form-grid {
+    min-width: 0;
+}
+
+[data-page="campanias-phishing"] .field-full {
+    grid-column: 1 / -1;
+    min-width: 0;
+}
+
+[data-page="campanias-phishing"] #c-participantes {
+    width: 100%;
+    max-width: 100%;
+}
+
+[data-page="campanias-phishing"] #c-resumen {
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+[data-page="campanias-phishing"] #campania-detalle {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 620px) {
+    [data-page="campanias-phishing"] .modal {
+        width: calc(100vw - 24px);
+        max-width: calc(100vw - 24px);
+    }
+
+    [data-page="campanias-phishing"] .modal-body {
+        padding: 18px;
+    }
+
+    [data-page="campanias-phishing"] .modal-head {
+        padding: 16px;
+    }
+
+    [data-page="campanias-phishing"] .modal-foot {
+        flex-wrap: wrap;
+        padding: 16px;
+    }
+
+    [data-page="campanias-phishing"] .card-head {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+}
+
+/* NIST Phish Scale */
+[data-page="campanias-phishing"] .nist-box {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    min-width: 0;
+}
+
+[data-page="campanias-phishing"] .nist-box legend {
+    font-weight: 600;
+    padding: 0 6px;
+}
+
+[data-page="campanias-phishing"] .nist-senales {
+    display: grid;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+[data-page="campanias-phishing"] .nist-senal {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(0, 2fr) minmax(0, 1.5fr) auto;
+    gap: 6px;
+    align-items: center;
+}
+
+[data-page="campanias-phishing"] .nist-senal > * {
+    min-width: 0;
+}
+
+[data-page="campanias-phishing"] .nist-resumen {
+    margin: 8px 0 12px;
+}
+
+[data-page="campanias-phishing"] .nist-lista {
+    margin: 6px 0;
+    padding-left: 18px;
+}
+
+[data-page="campanias-phishing"] .nist-lista li {
+    margin: 3px 0;
+}
+
+.chip.nist-alta {
+    background: var(--error-tint);
+    color: var(--error);
+}
+
+.chip.nist-media {
+    background: var(--brass-tint);
+    color: var(--brass-dark);
+}
+
+.chip.nist-baja {
+    background: var(--success-tint);
+    color: var(--success);
+}
+
+.chip.nist-sin {
+    background: var(--paper);
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+}
+
+@media (max-width: 620px) {
+    [data-page="campanias-phishing"] .nist-senal {
+        grid-template-columns: 1fr auto;
+    }
+
+    [data-page="campanias-phishing"] .nist-senal .js-senal-desc,
+    [data-page="campanias-phishing"] .nist-senal .js-senal-frag {
+        grid-column: 1 / -1;
+    }
+
+    [data-page="campanias-phishing"] .nist-senal .js-senal-tipo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    [data-page="campanias-phishing"] .nist-senal .js-quitar-senal {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
