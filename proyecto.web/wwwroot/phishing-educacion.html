@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación en Ciberseguridad · DISMATEC</title>
+    <link rel="stylesheet" href="css/styles.css"> 
+    <link rel="stylesheet" href="css/pages/phishing-educacion.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/pages/inspector.css">
+    <link rel="stylesheet" href="css/pages/pasaporte.css">
+    <script src="/app-config.js"></script>
+    <script type="module" src="js/app.js"></script>
+</head>
+<body data-theme="employee" data-page="phishing-educacion" data-title="">
+
+    <div class="edu-container">
+        <p class="edu-brand">DISMATEC</p>
+
+        <div id="pantalla-carga" class="visible">
+            <h2>Verificando enlace...</h2>
+            <p style="color:var(--text-muted);">Preparando entorno seguro.</p>
+        </div>
+
+        <div id="pantalla-error" class="edu-status edu-status-error">
+            <h2>Enlace inválido o expirado</h2>
+            <p id="msg-error-texto">Esta campaña de simulación ha concluido o el enlace es incorrecto.</p>
+        </div>
+
+        <div id="pantalla-exito" class="edu-status edu-status-ok">
+            <h2>¡Capacitación Completada!</h2>
+            <p id="msg-exito-texto">Has recuperado puntos de inmunidad. Tu cuenta está más segura.</p>
+            <a href="/login.html">Ir a mi Portal de Usuario</a>
+        </div>
+
+        <div id="modulo-concientizacion" style="display: none;">
+
+            <div class="alert-box">
+                <h1>¡Vaya! Acabas de hacer clic en un enlace simulado de Phishing.</h1>
+                <p>No te preocupes, esto fue una simulación interna de seguridad realizada por DISMATEC. Tu equipo no ha sido infectado. Sin embargo, en un entorno real, este clic podría haber comprometido la red de la empresa.</p>
+                <p>Esta simulación es para aprender, no para sancionar: tu resultado no se usa en evaluaciones de desempeño. Tómate un momento para revisar las señales y la próxima vez repórtalo.</p>
+            </div>
+
+            <!-- inspeccion interactiva de senales y anatomia del enlace -->
+            <div id="inspector-correo" class="correo-trampa"></div>
+            <div id="anatomia-enlace" class="correo-trampa" hidden></div>
+            <p id="inspeccion-puntos" class="inspeccion-puntos" hidden aria-live="polite"></p>
+
+            <section id="senales-mensaje" class="senales-mensaje" hidden aria-labelledby="senales-titulo">
+                <h3 id="senales-titulo">Señales que podías detectar</h3>
+                <p id="senales-dificultad" class="senales-dificultad"></p>
+                <ol id="lista-senales"></ol>
+            </section>
+
+            <section id="microleccion-asignada" class="microleccion-asignada" hidden aria-live="polite"></section>
+
+            <h3 class="edu-quiz-title">Recupera tus puntos de inmunidad respondiendo lo siguiente:</h3>
+
+            <form id="form-cuestionario">
+                
+                <div id="contenedor-preguntas"></div>
+
+                <div id="mensaje-feedback" class="feedback"></div>
+
+                <button type="submit" id="btn-evaluar" class="btn-enviar">Evaluar Respuestas</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
