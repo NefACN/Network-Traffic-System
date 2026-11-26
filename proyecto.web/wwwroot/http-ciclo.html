@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decisiones preventivas · DISMATEC</title>
+<link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css"><link rel="stylesheet" href="css/pages/aprendizaje.css"><link rel="stylesheet" href="css/pages/gobernanza.css">
+<script src="/app-config.js"></script><script type="module" src="js/app.js"></script>
+</head><body data-page="http-ciclo" data-theme="admin" data-title="Decisiones preventivas">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button><aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside>
+<div class="dash-main"><header class="dash-topbar" data-shell-header></header><main class="dash-content" id="contenido">
+<section class="page-heading"><div><p class="eyebrow">PREVENCIÓN</p><h1>Decisiones preventivas</h1><p>Convierte lo que detecta el modelo en acciones concretas de concientización para las áreas expuestas.</p></div></section>
+<ol class="decision-flow" aria-label="Cómo se generan las decisiones">
+<li><span>1</span><div><strong>Detectar</strong><p>El modelo HDBSCAN identifica accesos HTTP que no encajan en los patrones habituales.</p></div></li>
+<li><span>2</span><div><strong>Confirmar</strong><p>Un administrador revisa el comportamiento en «Comportamientos atípicos» y lo confirma como incidente, o se confirma un reporte del personal.</p></div></li>
+<li><span>3</span><div><strong>Decidir</strong><p>Aquí aparece una sugerencia por área y tema: lanza una simulación, asigna una microlección o descártala con una nota.</p></div></li>
+</ol>
+<p id="ciclo-error" class="page-notice hidden" role="alert"></p>
+
+<section class="panel"><div class="panel-heading"><h2>Sugerencias por atender</h2>
+<label>Estado <select id="sug-estado"><option value="pendiente">Pendientes</option><option value="">Todas</option><option value="campania">Campaña preparada</option><option value="microleccion">Microlección asignada</option><option value="descartada">Descartadas</option></select></label></div>
+<p class="panel-caption">Se crean cuando un analista confirma una anomalía HTTP como incidente o cuando se confirma un incidente real reportado por el personal. Las evidencias de la misma sucursal y área se agrupan durante 30 días. El sistema solo sugiere: tú decides.</p>
+<div id="sugerencias"></div></section>
+
+<section class="panel"><div class="panel-heading"><h2>Validar el modelo con simulaciones</h2></div>
+<p class="panel-caption"><b>Herramienta técnica.</b> Las simulaciones de phishing generan tráfico HTTP de origen conocido que sirve para comprobar cómo responde el modelo.</p>
+<p class="panel-caption">Cada apertura, clic y envío del formulario señuelo queda registrado como petición HTTP real, con la IP y el token seudonimizados. Genera un archivo NGINX de una campaña y analízalo en <a class="text-action" href="http-fuentes.html">Fuentes y registros</a> como cualquier otro conjunto.</p>
+<div class="table-scroll"><table class="event-table"><thead><tr><th>Campaña</th><th>Aperturas</th><th>Clics</th><th>Credenciales</th><th>Periodo</th><th></th></tr></thead><tbody id="ciclo-campanias"></tbody></table></div></section>
+
+<section class="panel"><div class="panel-heading"><h2>Validación con tráfico de verdad conocida</h2></div>
+<p class="panel-caption">Compara lo que hizo el modelo con el origen conocido de cada línea. Todas son interacciones humanas con una simulación: describe cómo trata el modelo este comportamiento, no su precisión frente a ataques.</p>
+<div id="ciclo-conjuntos"></div><div id="ciclo-verdad" aria-live="polite"></div></section>
+</main></div></div>
+
+<dialog class="modal learning-dialog" id="dialog-micro" aria-labelledby="micro-titulo"><form id="form-micro"><div class="modal-head"><h2 id="micro-titulo">Asignar microlección</h2><button type="button" class="modal-close" data-close-dialog="dialog-micro" aria-label="Cerrar">×</button></div>
+<div class="modal-body"><p id="micro-alcance"></p><label>Microlección<select id="micro-actividad" required></select></label><p class="form-error" id="micro-error" role="alert"></p></div>
+<div class="modal-foot"><button class="btn btn-primary" type="submit">Asignar</button></div></form></dialog>
+<noscript>Activa JavaScript para consultar estas pantallas.</noscript>
+</body></html>

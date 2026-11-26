@@ -1,0 +1,271 @@
+/* CyberScore: indicador personal, distribucion y lista de colaboradores */
+:root {
+    --cs-low: #2f9e6b;
+    --cs-medium: #d1a12a;
+    --cs-high: #e07b39;
+    --cs-critical: #d64550;
+    --cs-none: #8a96a8;
+}
+
+.cyberscore {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 12px;
+    --cs: var(--cs-none);
+}
+
+.cyberscore.is-low {
+    --cs: var(--cs-low);
+}
+
+.cyberscore.is-medium {
+    --cs: var(--cs-medium);
+}
+
+.cyberscore.is-high {
+    --cs: var(--cs-high);
+}
+
+.cyberscore.is-critical {
+    --cs: var(--cs-critical);
+}
+
+.cyberscore-gauge {
+    width: 140px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    background: radial-gradient(closest-side, var(--paper-2, #fff) 78%, transparent 79%), conic-gradient(var(--cs) calc(var(--score) * 1%), color-mix(in srgb, var(--cs) 15%, transparent) 0);
+}
+
+.cyberscore-gauge strong {
+    font-size: 40px;
+    line-height: 1;
+    color: var(--cs);
+}
+
+.cyberscore-gauge span {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.cyberscore-text h3 {
+    margin: 0 0 6px;
+    color: var(--cs);
+}
+
+.cyberscore-text p {
+    margin: 0 0 8px;
+}
+
+.cyberscore-scale {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: 8px 0;
+    list-style: none;
+    font-size: 11.5px;
+}
+
+.cyberscore-scale li, .cs-level {
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+}
+
+.is-low.cyberscore-scale, .cyberscore-scale .is-low, .cs-level.is-low {
+    color: var(--cs-low);
+}
+
+.cyberscore-scale .is-medium, .cs-level.is-medium {
+    color: var(--cs-medium);
+}
+
+.cyberscore-scale .is-high, .cs-level.is-high {
+    color: var(--cs-high);
+}
+
+.cyberscore-scale .is-critical, .cs-level.is-critical {
+    color: var(--cs-critical);
+}
+
+.cs-level.is-none {
+    color: var(--cs-none);
+}
+
+.score-down {
+    color: var(--cs-critical);
+    font-weight: 600;
+}
+
+.score-up {
+    color: var(--cs-low);
+    font-weight: 600;
+}
+
+/* distribucion por nivel */
+.cs-distribution {
+    display: flex;
+    height: 18px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px 0;
+    background: color-mix(in srgb, var(--text, #222) 8%, transparent);
+}
+
+.cs-distribution span {
+    display: block;
+    height: 100%;
+}
+
+.cs-dist-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 12.5px;
+}
+
+.cs-dist-legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+}
+
+.cs-kpis {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.cs-kpi {
+    --lvl: var(--cs-none);
+    padding: 14px;
+    border: 1px solid color-mix(in srgb, var(--lvl) 45%, var(--line));
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--lvl) 8%, var(--paper-2));
+}
+
+.cs-kpi strong {
+    display: block;
+    font-size: 26px;
+}
+
+.cs-kpi small {
+    color: var(--text-muted);
+}
+
+.cs-kpi.is-low {
+    --lvl: var(--cs-low);
+}
+
+.cs-kpi.is-medium {
+    --lvl: var(--cs-medium);
+}
+
+.cs-kpi.is-high {
+    --lvl: var(--cs-high);
+}
+
+.cs-kpi.is-critical {
+    --lvl: var(--cs-critical);
+}
+
+.cs-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: end;
+    margin: 12px 0;
+}
+
+.cs-filters label {
+    display: grid;
+    gap: 6px;
+    min-width: 170px;
+    flex: 1;
+}
+
+.cs-score {
+    font-weight: 700;
+}
+
+.cs-bar {
+    display: block;
+    height: 6px;
+    width: 90px;
+    margin-top: 4px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--text, #222) 10%, transparent);
+    overflow: hidden;
+}
+
+.cs-bar span {
+    display: block;
+    height: 100%;
+}
+
+.cs-dialog {
+    width: min(760px, calc(100vw - 24px));
+    max-height: 90vh;
+    overflow: auto;
+}
+
+@media (max-width: 760px) {
+    .cyberscore {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .cyberscore-scale {
+        justify-content: center;
+    }
+
+    .cs-kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+#cyberscore-app td small {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 11.5px;
+}
+
+#cyberscore-app td {
+    vertical-align: top;
+}
+
+.cs-distribution.cs-mini {
+    height: 10px;
+    width: 140px;
+    margin: 2px 0 4px;
+}
+
+.cs-cell small {
+    display: block;
+    margin-top: 4px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+}
+
+a.cs-level {
+    text-decoration: none;
+}
+
+#preventivo-areas-body td small {
+    display: block;
+    margin-top: 4px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Programa de concientización · DISMATEC</title>
+<link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css"><link rel="stylesheet" href="css/pages/aprendizaje.css"><link rel="stylesheet" href="css/pages/gobernanza.css"><link rel="stylesheet" href="css/pages/programa.css">
+<script src="/app-config.js"></script><script type="module" src="js/app.js"></script></head>
+<body data-page="programa" data-theme="admin" data-title="Programa de concientización"><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button><aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside><div class="dash-main"><header class="dash-topbar" data-shell-header></header><main class="dash-content" id="contenido">
+<section class="page-heading"><div><p class="eyebrow">ISO/IEC 27001 · 7.2, 7.3 Y 9.1 · NIST SP 800-50</p><h1>Programa de concientización</h1><p>Mide el programa, define rutas obligatorias, planifica el año, escucha al personal y reúne las evidencias.</p></div></section>
+<p id="programa-error" class="page-notice hidden" role="alert"></p>
+<div class="prog-tabs" role="tablist">
+<button class="prog-tab is-active" role="tab" data-tab="panel" aria-selected="true">Panel</button>
+<button class="prog-tab" role="tab" data-tab="rutas" aria-selected="false">Rutas y cumplimiento</button>
+<button class="prog-tab" role="tab" data-tab="plan" aria-selected="false">Planificador anual</button>
+<button class="prog-tab" role="tab" data-tab="encuestas" aria-selected="false">Encuesta de cultura</button>
+<button class="prog-tab" role="tab" data-tab="matriz" aria-selected="false">Matriz y evidencias</button>
+</div>
+
+<section class="prog-panel is-active" id="tab-panel" role="tabpanel">
+<section class="panel"><div class="panel-heading"><h2>Indicadores del programa (Kirkpatrick)</h2>
+<form id="panel-filtros" class="inc-filters"><label>Desde<input type="date" id="panel-desde"></label><label>Hasta<input type="date" id="panel-hasta"></label><button class="btn" type="submit">Actualizar</button></form></div>
+<div id="panel-niveles" class="prog-levels" aria-live="polite"></div>
+<h3>Comportamiento observado por mes</h3><div id="panel-tendencia"></div><p class="panel-caption" id="panel-nota"></p></section>
+</section>
+
+<section class="prog-panel" id="tab-rutas" role="tabpanel" hidden>
+<section class="panel"><div class="panel-heading"><h2>Cumplimiento de las rutas</h2><button class="btn" type="button" id="btn-recordatorios">Enviar recordatorios</button></div>
+<div id="cumplimiento-resumen" class="inc-cards"></div><div id="cumplimiento-detalle"></div>
+<p class="panel-caption">Los recordatorios se envían por correo a quienes tienen requisitos vencidos o por vencer (15 días), como máximo uno cada 7 días por persona.</p><p class="panel-caption" id="recordatorios-estado" role="status"></p></section>
+<section class="panel"><div class="panel-heading"><h2>Rutas de aprendizaje</h2><button class="btn btn-primary" type="button" id="btn-nueva-ruta">Nueva ruta</button></div>
+<p class="panel-caption">Matriz área × actividad × frecuencia. La inducción se cuenta desde el alta de cada persona; los demás requisitos, desde que se agregan a la ruta, para no vencer de forma retroactiva al personal actual.</p>
+<div id="rutas-lista"></div></section>
+</section>
+
+<section class="prog-panel" id="tab-plan" role="tabpanel" hidden>
+<section class="panel"><div class="panel-heading"><h2>Planificador anual</h2>
+<div class="row-actions"><label>Año <input type="number" id="plan-anio" min="2020" max="2100"></label><button class="btn" type="button" id="btn-temporadas">Cargar temporadas sugeridas</button><button class="btn btn-primary" type="button" id="btn-nuevo-evento">Nuevo evento</button></div></div>
+<div id="plan-cobertura" class="panel-caption" aria-live="polite"></div>
+<div id="plan-calendario" class="prog-calendar"></div></section>
+</section>
+
+<section class="prog-panel" id="tab-encuestas" role="tabpanel" hidden>
+<section class="panel"><div class="panel-heading"><h2>Encuestas de cultura de seguridad</h2><button class="btn btn-primary" type="button" id="btn-nueva-encuesta">Nueva encuesta</button></div>
+<p class="panel-caption">Escala Likert de 1 (muy en desacuerdo) a 5 (muy de acuerdo). Se recomienda aplicarla dos veces al año. Las respuestas son anónimas y los grupos pequeños se ocultan.</p>
+<div id="encuestas-lista"></div><div id="encuesta-resultados" aria-live="polite"></div></section>
+</section>
+
+<section class="prog-panel" id="tab-matriz" role="tabpanel" hidden>
+<section class="panel"><div class="panel-heading"><h2>Matriz de cumplimiento</h2><button class="btn btn-primary" type="button" id="btn-evidencias">Descargar paquete de evidencias</button></div>
+<p class="panel-caption">Cada control se vincula con la funcionalidad que lo atiende y con la cantidad de evidencias registradas en el sistema. El paquete contiene agregados y decisiones, sin datos personales.</p>
+<div id="matriz"></div></section>
+</section>
+</main></div></div>
+
+<dialog class="modal learning-dialog" id="dialog-ruta" aria-labelledby="ruta-titulo"><form id="form-ruta"><div class="modal-head"><h2 id="ruta-titulo">Ruta de aprendizaje</h2><button type="button" class="modal-close" data-close-dialog="dialog-ruta" aria-label="Cerrar">×</button></div>
+<div class="modal-body"><input type="hidden" id="ruta-id"><div class="form-grid"><label>Nombre<input id="ruta-nombre" maxlength="120" required></label><label>Área<select id="ruta-area"></select></label></div>
+<label>Descripción<textarea id="ruta-descripcion" maxlength="500" rows="2"></textarea></label><label class="quiz-option"><input type="checkbox" id="ruta-activa" checked>Ruta activa</label>
+<h3>Actividades requeridas</h3><div id="ruta-requisitos" class="prog-requirements"></div><button type="button" class="btn" id="ruta-agregar">+ Agregar actividad</button>
+<p class="form-error" id="ruta-error" role="alert"></p></div>
+<div class="modal-foot"><button class="btn btn-primary" type="submit">Guardar ruta</button></div></form></dialog>
+
+<dialog class="modal learning-dialog" id="dialog-evento" aria-labelledby="evento-titulo"><form id="form-evento"><div class="modal-head"><h2 id="evento-titulo">Evento del plan</h2><button type="button" class="modal-close" data-close-dialog="dialog-evento" aria-label="Cerrar">×</button></div>
+<div class="modal-body"><input type="hidden" id="evento-id"><div class="form-grid">
+<label>Mes<select id="evento-mes"></select></label><label>Tipo<select id="evento-tipo"><option value="campania">Campaña de simulación</option><option value="capacitacion">Capacitación</option><option value="encuesta">Encuesta</option><option value="comunicacion">Comunicación</option><option value="temporada">Temporada de riesgo</option></select></label>
+<label>Título<input id="evento-titulo-input" maxlength="150" required></label><label>Tema<select id="evento-tema"></select></label>
+<label>Sucursal<select id="evento-sucursal"></select></label><label>Estado<select id="evento-estado"><option value="planificado">Planificado</option><option value="realizado">Realizado</option><option value="cancelado">Cancelado</option></select></label></div>
+<label>Descripción<textarea id="evento-descripcion" maxlength="1000" rows="3"></textarea></label><p class="form-error" id="evento-error" role="alert"></p></div>
+<div class="modal-foot"><button type="button" class="btn" id="evento-eliminar" hidden>Eliminar</button><button class="btn btn-primary" type="submit">Guardar</button></div></form></dialog>
+
+<dialog class="modal learning-dialog" id="dialog-encuesta" aria-labelledby="encuesta-titulo"><form id="form-encuesta"><div class="modal-head"><h2 id="encuesta-titulo">Nueva encuesta de cultura</h2><button type="button" class="modal-close" data-close-dialog="dialog-encuesta" aria-label="Cerrar">×</button></div>
+<div class="modal-body"><div class="form-grid"><label>Título<input id="enc-titulo" maxlength="150" required value="Encuesta de cultura de seguridad"></label><label>Periodo<input id="enc-periodo" maxlength="20" required placeholder="2026-S2"></label>
+<label>Desde<input type="date" id="enc-desde" required></label><label>Hasta<input type="date" id="enc-hasta" required></label></div>
+<p class="panel-caption">Se usarán las 10 preguntas base en cinco dimensiones (actitud, conocimiento, comportamiento, confianza para reportar y apoyo de la organización), para poder comparar periodos.</p><ol id="enc-preguntas" class="panel-caption"></ol>
+<p class="form-error" id="enc-error" role="alert"></p></div><div class="modal-foot"><button class="btn btn-primary" type="submit">Crear como borrador</button></div></form></dialog>
+</body></html>

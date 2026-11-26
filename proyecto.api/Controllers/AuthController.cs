@@ -95,7 +95,7 @@ namespace proyecto.api.Controllers
                 await _auditoria.RegistrarAsync(
                     "LoginFallido",
                     exitoso: false,
-                    nombreUsuario: Recortar(identificador, 256),
+                    nombreUsuario: Recortar(identificador, 30),
                     detalles: new { razon = "UsuarioDesconocido" });
 
                 // un identificador inexistente se bloquea igual que uno real para no revelar cuentas

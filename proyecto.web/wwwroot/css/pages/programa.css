@@ -1,0 +1,218 @@
+/* programa de concientizacion */
+.prog-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.prog-tab {
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    padding: 10px 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+}
+
+.prog-tab.is-active {
+    color: var(--text);
+    border-bottom-color: var(--accent, var(--success));
+    font-weight: 600;
+}
+
+.prog-levels {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.prog-level {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    min-width: 0;
+}
+
+.prog-level .results-card {
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper-2);
+    overflow-wrap: anywhere;
+}
+
+.prog-level .results-card span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.prog-level .results-card strong {
+    display: block;
+    font-size: 22px;
+    margin: 4px 0;
+}
+
+.prog-level .results-card small {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.prog-bar {
+    display: inline-block;
+    width: 70px;
+    height: 6px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--error) var(--v), var(--line) var(--v));
+}
+
+.prog-bar.is-good {
+    background: linear-gradient(90deg, var(--success) var(--v), var(--line) var(--v));
+}
+
+.prog-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.prog-requirements {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.prog-requirement {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) auto minmax(0, 1fr) minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: end;
+}
+
+.prog-requirement > * {
+    min-width: 0;
+}
+
+.prog-calendar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.prog-month {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    min-height: 120px;
+    min-width: 0;
+}
+
+.prog-month.is-empty {
+    border-style: dashed;
+}
+
+.prog-month h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+}
+
+.prog-event {
+    text-align: left;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--success);
+    border-radius: 6px;
+    padding: 6px 8px;
+    background: var(--paper-2);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+}
+
+.prog-event strong {
+    display: block;
+    font-size: 12px;
+}
+
+.prog-event small {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.prog-event.is-temporada {
+    border-left-color: var(--brass, #b7791f);
+}
+
+.prog-event.is-encuesta, .prog-event.is-comunicacion {
+    border-left-color: #2563eb;
+}
+
+.prog-event.is-cancelado {
+    opacity: .55;
+    text-decoration: line-through;
+}
+
+.prog-dimensions {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+}
+
+.prog-matrix td {
+    white-space: normal !important;
+}
+
+@media (max-width: 1100px) {
+    .prog-levels {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .prog-calendar {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .prog-levels, .prog-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .prog-calendar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .prog-requirement {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .prog-requirement .js-req-actividad {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 420px) {
+    .prog-calendar {
+        grid-template-columns: 1fr;
+    }
+}
+
+.prog-month .t-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.prog-event.is-temporada {
+    border-left-color: #d69e2e;
+}
