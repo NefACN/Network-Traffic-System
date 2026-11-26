@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seguimiento preventivo · DISMATEC</title>
+<link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css"><link rel="stylesheet" href="css/pages/cyberscore.css">
+<script src="/app-config.js"></script><script type="module" src="js/app.js"></script>
+</head>
+<body data-page="seguimiento-preventivo" data-theme="admin" data-title="Seguimiento preventivo">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button>
+<aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside>
+<div class="dash-main"><header class="dash-topbar" data-shell-header></header>
+<main class="dash-content" id="contenido">
+<section class="page-heading"><div><p class="eyebrow">PREVENCIÓN EN TU SUCURSAL</p><h1>Seguimiento preventivo<span class="accent-dot">.</span></h1><p id="branch-name">Consulta consolidada de campañas y aprendizaje.</p></div></section>
+<div id="preventivo-error" class="page-notice hidden" role="alert"></div>
+<section class="panel">
+<form class="audit-filters" id="preventivo-filtros">
+<label id="branch-filter" hidden>Sucursal<select id="preventivo-sucursal"><option value="">Selecciona una sucursal</option></select></label>
+<label>Desde<input type="date" id="preventivo-desde"></label><label>Hasta<input type="date" id="preventivo-hasta"></label>
+<label>Área operativa<select id="preventivo-area"><option value="">Todas las áreas de la sucursal</option></select></label>
+<button class="btn btn-ghost compact" type="submit" id="preventivo-consultar">Consultar</button>
+<button class="text-action" type="button" id="preventivo-limpiar">Limpiar filtros</button>
+</form><p class="panel-caption">Periodo por fecha real de envío y por inicio del curso. Sin fechas se muestran los últimos 90 días. Solo consulta de información consolidada.</p>
+</section>
+<p id="preventivo-status" role="status" aria-live="polite">Consultando resultados…</p>
+<div id="preventivo-resultados" hidden>
+<section class="metric-grid" aria-label="Resumen preventivo">
+<article class="metric"><span>Participantes en campañas</span><strong id="preventivo-participantes">—</strong><small>Personas distintas en el alcance consultado</small></article>
+<article class="metric"><span>Campañas realizadas</span><strong id="preventivo-campanias">—</strong><small>Con envíos registrados en la sucursal</small></article>
+<article class="metric metric-warning"><span>Clics en simulaciones</span><strong id="preventivo-clics">—</strong><small id="preventivo-tasa">—</small></article>
+<article class="metric"><span>Participantes en cursos</span><strong id="preventivo-cursos">—</strong><small id="preventivo-aprobados">—</small></article>
+</section>
+<section class="panel" id="areas-preventivas"><div class="panel-heading"><h2>Susceptibilidad observada por área</h2><a href="campanias-phishing.html" class="text-action" id="preventivo-nueva-campania" hidden>Nueva simulación</a></div>
+<p class="panel-caption">La criticidad del negocio es una clasificación administrativa. El nivel CyberScore es el del promedio de las personas asignadas hoy al área; la prioridad de refuerzo lo sigue (Crítico o Alto, o 30 % o más de personas en esos niveles → Alta) y usa la tasa de clics solo si el área aún no tiene evaluación suficiente. Solo intervienen simulaciones y actividades del sistema; los logs HTTP se consultan por separado como alertas técnicas.</p>
+<div class="table-scroll"><table class="event-table"><thead><tr><th>Área</th><th>Criticidad del negocio</th><th>Participantes / envíos</th><th>Clics</th><th>Tasa</th><th>Reincidentes</th><th>Capacitación pendiente</th><th>Estado de datos</th><th>Nivel CyberScore</th><th>Prioridad de refuerzo</th></tr></thead><tbody id="preventivo-areas-body"></tbody></table></div>
+<div id="preventivo-acciones"></div>
+<details><summary>Cómo se calcula la prioridad</summary><p class="panel-caption" id="preventivo-politica"></p></details>
+<p class="panel-caption" id="preventivo-calidad" role="status"></p>
+</section>
+<section class="panel" id="campanias"><div class="panel-heading"><h2>Campañas de simulación</h2></div>
+<div class="table-scroll"><table class="event-table"><thead><tr><th>Campaña</th><th>Primer envío</th><th>Participantes</th><th>Envíos</th><th>Clics</th><th>Detalle</th></tr></thead><tbody id="preventivo-campanias-body"></tbody></table></div>
+<div id="preventivo-detalle" hidden aria-live="polite"></div>
+</section>
+<section class="panel" id="actividades"><div class="panel-heading"><h2>Actividades de concientización</h2></div>
+<div class="table-scroll"><table class="event-table"><thead><tr><th>Tema</th><th>Participantes</th><th>Intentos</th><th>Aprobados</th><th>No aprobados</th><th>Pendientes</th></tr></thead><tbody id="preventivo-actividades-body"></tbody></table></div>
+</section>
+<section class="panel"><div class="panel-heading"><h2>Temas que requieren refuerzo</h2></div><div id="preventivo-refuerzo"></div></section>
+<p class="panel-caption" id="preventivo-reportes"></p>
+<p class="panel-caption" id="preventivo-nota"></p>
+</div>
+</main></div></div>
+</body></html>
