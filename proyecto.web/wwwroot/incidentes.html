@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Incidentes reportados · DISMATEC</title>
+<link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css"><link rel="stylesheet" href="css/pages/aprendizaje.css"><link rel="stylesheet" href="css/pages/gobernanza.css">
+<script src="/app-config.js"></script><script type="module" src="js/app.js"></script></head>
+<body data-page="incidentes" data-theme="admin" data-title="Incidentes reportados"><a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button><aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside><div class="dash-main"><header class="dash-topbar" data-shell-header></header><main class="dash-content" id="contenido">
+<section class="page-heading"><div><p class="eyebrow">ISO/IEC 27002 · 6.8 Y 5.24–5.27</p><h1>Incidentes reportados</h1><p>Mensajes reales que el personal reportó. Analízalos, clasifícalos y devuelve una respuesta a quien los reportó.</p></div></section>
+<p id="incidentes-error" class="page-notice hidden" role="alert"></p>
+<section class="inc-cards" id="incidentes-indicadores" aria-live="polite"></section>
+<section class="panel"><div class="panel-heading"><h2>Cola de atención</h2>
+<form id="incidentes-filtros" class="inc-filters"><label>Estado<select id="filtro-estado"><option value="">Todos</option><option value="recibido">Recibido</option><option value="en_analisis">En análisis</option><option value="resuelto">Resuelto</option></select></label>
+<label>Prioridad<select id="filtro-prioridad"><option value="">Todas</option><option value="alta">Alta</option><option value="media">Media</option><option value="baja">Baja</option></select></label></form></div>
+<div class="table-scroll"><table class="event-table"><thead><tr><th>Código</th><th>Asunto</th><th>Canal · interacción</th><th>Prioridad</th><th>Estado</th><th>Reportado</th><th></th></tr></thead><tbody id="incidentes-body"></tbody></table></div>
+<div class="results-pages" id="incidentes-paginas"></div>
+</section>
+</main></div></div>
+<dialog class="modal learning-dialog" id="dialog-incidente" aria-labelledby="incidente-titulo"><div class="modal-head"><h2 id="incidente-titulo">Incidente</h2><button type="button" class="modal-close" data-close-dialog="dialog-incidente" aria-label="Cerrar">×</button></div>
+<div class="modal-body"><div id="incidente-detalle"></div>
+<form id="form-incidente" class="inc-update"><h3>Registrar avance</h3>
+<div class="form-grid"><label>Estado<select id="inc-estado"><option value="recibido">Recibido</option><option value="en_analisis">En análisis</option><option value="resuelto">Resuelto</option></select></label>
+<label>Prioridad<select id="inc-prioridad"><option value="baja">Baja</option><option value="media">Media</option><option value="alta">Alta</option></select></label>
+<label id="inc-clasificacion-campo" hidden>Clasificación<select id="inc-clasificacion"><option value="">Selecciona…</option><option value="malicioso">Malicioso confirmado</option><option value="spam">Correo no deseado</option><option value="legitimo">Legítimo</option><option value="simulacion">Simulación de entrenamiento</option></select></label></div>
+<label id="inc-respuesta-campo" hidden>Respuesta para quien reportó (se envía por correo)<textarea id="inc-respuesta" maxlength="2000" rows="3"></textarea></label>
+<label>Nota<textarea id="inc-nota" maxlength="2000" rows="2"></textarea></label>
+<label class="quiz-option"><input type="checkbox" id="inc-publica">Mostrar esta nota a quien reportó</label>
+<p class="form-error" id="inc-error" role="alert"></p>
+<button class="btn btn-primary" type="submit">Guardar avance</button></form></div></dialog>
+</body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar constancia · DISMATEC</title>
+    <link rel="stylesheet" href="css/pages/constancia.css">
+    <script src="/app-config.js"></script>
+    <script type="module" src="js/controllers/verificar-constancia.js"></script>
+</head>
+<body class="verify-page">
+    <main class="verify-box">
+        <h1>Verificar una constancia</h1>
+        <p>Ingresa el código que figura en la constancia (por ejemplo DSM-7KQ2-M9XF-H4TA).</p>
+        <form id="form-verificar"><label for="codigo">Código</label><input id="codigo" maxlength="20" autocomplete="off" required><button type="submit">Verificar</button></form>
+        <div id="resultado" role="status" aria-live="polite"></div>
+    </main>
+</body>
+</html>

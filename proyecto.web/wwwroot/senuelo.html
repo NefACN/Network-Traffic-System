@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="css/pages/senuelo.css">
+    <script src="/app-config.js"></script>
+    <script type="module" src="js/controllers/senuelo.js"></script>
+</head>
+<body>
+    <!-- los campos no tienen name para que el navegador nunca envie lo escrito -->
+    <main class="senuelo">
+        <form id="form-senuelo" action="phishing-educacion.html" method="get" autocomplete="off">
+            <input type="hidden" name="token" id="senuelo-token">
+            <h1>Iniciar sesión</h1>
+            <p class="sub">Para ver el documento compartido, confirma tu cuenta.</p>
+            <label for="senuelo-usuario">Correo o usuario</label>
+            <input id="senuelo-usuario" type="text" autocomplete="off" spellcheck="false" required>
+            <label for="senuelo-clave">Contraseña</label>
+            <input id="senuelo-clave" type="password" autocomplete="new-password" required>
+            <button type="submit" id="senuelo-enviar">Continuar</button>
+        </form>
+    </main>
+</body>
+</html>

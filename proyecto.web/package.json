@@ -1,0 +1,14 @@
+{
+  "name": "dismac-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test ../tests/frontend/core.test.mjs",
+    "test:browser": "node ../tests/frontend/navigation.browser.cjs",
+    "test:http": "node ../tests/frontend/http.browser.cjs",
+    "test:connection": "node ../tests/frontend/connection.browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

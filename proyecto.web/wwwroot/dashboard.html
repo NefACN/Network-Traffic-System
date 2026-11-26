@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centro de control · DISMATEC</title>
+    <link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/dashboard.css"><link rel="stylesheet" href="css/app.css">
+    <script src="/app-config.js"></script><script type="module" src="js/app.js"></script>
+</head>
+<body data-page="dashboard" data-theme="admin" data-title="Centro de control">
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<div class="dash" id="dash"><button class="dash-scrim" id="dash-scrim" aria-label="Cerrar navegación"></button>
+<aside class="dash-sidebar" id="app-sidebar" data-shell-sidebar></aside>
+<div class="dash-main"><header class="dash-topbar" data-shell-header></header>
+<main class="dash-content" id="contenido">
+    <section class="page-heading"><div><p class="eyebrow">DETECCIÓN TEMPRANA</p><h1>Centro de control<span class="accent-dot">.</span></h1><p>Comportamientos atípicos en los accesos HTTP y exposición de las personas al phishing, en una sola vista.</p></div>
+        <div class="heading-actions"><label class="inline-filter">Análisis<select id="run-select" aria-label="Análisis mostrado"><option value="">Cargando…</option></select></label><button type="button" class="live-pill" id="live-pill" data-state="connecting" title="El tablero se actualiza solo cuando hay cambios"><i></i><span>Conectando…</span></button></div></section>
+    <div id="dashboard-error" class="page-notice hidden" role="alert"></div>
+    <div class="detection-status" aria-live="polite">
+        <span><span class="status-light" id="model-light"></span><b>Modelo</b> <span id="model-status">Consultando…</span></span>
+        <span><b>Fuentes en vivo</b> <span id="live-status">—</span></span>
+        <span><b>Periodo analizado</b> <span id="period-status">—</span></span>
+        <span class="snapshot-source" id="snapshot-time">—</span>
+    </div>
+
+    <h2 class="section-title cc-attention-title"><span data-icon="alert"></span>Requiere atención</h2>
+    <section class="kpi-grid kpi-strip cc-attention" aria-label="Lo que requiere atención">
+        <a class="kpi kpi-attention" id="link-pending" href="http-eventos.html?candidate=true&amp;review=pending"><span class="kpi-label">Atípicos HTTP por revisar</span><strong id="kpi-pending">—</strong><small>Sobre el umbral, sin revisar</small></a>
+        <a class="kpi" href="seguimiento-preventivo.html"><span class="kpi-label">Áreas en riesgo alto</span><strong id="kpi-areas">—</strong><small id="kpi-areas-caption">Según el CyberScore de sus integrantes</small></a>
+        <a class="kpi" href="http-ciclo.html"><span class="kpi-label">Decisiones pendientes</span><strong id="kpi-decisions">—</strong><small>Sugerencias de refuerzo por atender</small></a>
+        <a class="kpi" id="link-campaign" href="campanias-phishing.html"><span class="kpi-label">Simulación de phishing</span><strong id="kpi-campaign">—</strong><small id="kpi-campaign-caption">Consultando campañas…</small></a>
+    </section>
+
+    <h2 class="section-title"><span data-icon="radar"></span>Detección de comportamientos atípicos</h2>
+    <section class="kpi-grid kpi-grid-5 kpi-strip" aria-label="Indicadores de detección">
+        <a class="kpi" href="http-ejecuciones.html"><span class="kpi-label">Registros analizados</span><strong id="kpi-total">—</strong><small id="kpi-total-caption">En el análisis seleccionado</small><span id="kpi-total-spark"></span></a>
+        <a class="kpi" href="http-eventos.html"><span class="kpi-label"><i class="dot is-atypical"></i>Comportamientos atípicos</span><strong id="kpi-noise">—</strong><small id="kpi-noise-caption">Fuera de todo agrupamiento</small><span id="kpi-noise-spark"></span></a>
+        <a class="kpi" id="link-candidates" href="http-eventos.html?candidate=true"><span class="kpi-label"><i class="dot is-threshold"></i>Sobre el umbral</span><strong id="kpi-candidates">—</strong><small id="kpi-candidates-caption">Superan el umbral de alerta</small><span id="kpi-candidates-spark"></span></a>
+        <a class="kpi" href="http-eventos.html"><span class="kpi-label">Incidentes confirmados</span><strong id="kpi-incidents">—</strong><small id="kpi-incidents-caption">Tras la revisión del administrador</small></a>
+        <a class="kpi" href="http-analisis.html"><span class="kpi-label">Agrupamientos</span><strong id="kpi-clusters">—</strong><small id="kpi-clusters-caption">Patrones habituales identificados</small></a>
+    </section>
+    <section class="dash-row row-2-1 cc-triage-row">
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">EVOLUCIÓN</p><h2>Atípicos por ventana de tiempo</h2></div><a class="text-action" href="http-analisis.html">Ver detalle <span data-icon="arrow"></span></a></div>
+            <div class="chart-legend"><span><i class="swatch is-atypical"></i>Atípicos</span><span><i class="swatch is-threshold"></i>Sobre el umbral</span></div>
+            <div id="chart-timeline" class="chart-box"><p class="empty-state">Cargando…</p></div>
+            <p class="panel-caption">Ventanas de 60 minutos. Un comportamiento atípico es una observación que requiere revisión, no un ataque confirmado.</p></article>
+        <div class="cc-stack">
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">TRIAGE</p><h2>Cola de revisión</h2></div><span class="cc-queue-tags"><a class="cc-new-chip" id="triage-new" href="http-eventos.html?candidate=true&amp;review=pending" hidden></a><span class="subtle-tag" id="triage-count">—</span></span></div>
+            <div id="triage-list" class="triage-list" aria-live="polite"><p class="empty-state">Consultando…</p></div>
+            <a class="btn btn-primary cc-review-btn" id="btn-review" href="http-eventos.html?candidate=true&amp;review=pending">Revisar pendientes <span data-icon="arrow"></span></a></article>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">TRIAGE</p><h2>Estado de revisión</h2></div></div>
+            <div id="chart-review"><p class="empty-state">Cargando…</p></div>
+            <p class="panel-caption" id="review-caption">Resultados revisados por el administrador en este análisis.</p></article>
+        </div>
+    </section>
+    <details class="cc-diagnostics" id="cc-diagnostics">
+        <summary><span class="cc-diag-title"><span data-icon="layers"></span>Diagnóstico del análisis</span><span class="cc-diag-hint">Cómo agrupó el modelo los accesos, la rareza de los atípicos y su perfil. <span id="model-params">Parámetros del modelo: consultando…</span></span><span data-icon="chevron" class="cc-diag-chevron"></span></summary>
+        <section class="dash-row row-1-1">
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">HDBSCAN</p><h2>Distribución por agrupamiento</h2></div><span class="subtle-tag">% de los registros</span></div>
+            <div id="chart-clusters"><p class="empty-state">Cargando…</p></div>
+            <p class="panel-caption">Cada agrupamiento es un patrón de acceso habitual. El ruido (−1) reúne los registros que no encajan en ninguno: son los comportamientos atípicos.</p></article>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">RAREZA</p><h2>Distribución del puntaje de anomalía</h2></div><span class="subtle-tag" id="score-sample">—</span></div>
+            <div class="chart-legend"><span><i class="swatch is-atypical"></i>Bajo el umbral</span><span><i class="swatch is-threshold"></i>Sobre el umbral</span></div>
+            <div id="chart-scores" class="chart-box"><p class="empty-state">Cargando…</p></div></article>
+        </section>
+        <section class="panel cc-profile" aria-labelledby="cc-profile-title">
+        <div class="panel-heading"><h2 id="cc-profile-title">Perfil de los atípicos</h2></div>
+        <div class="cc-profile-grid"><div class="cc-profile-col"><h3>Respuestas HTTP</h3><div id="chart-status"><p class="empty-state">Cargando…</p></div></div><div class="cc-profile-col"><h3>Rutas más frecuentes</h3><div id="chart-routes"><p class="empty-state">Cargando…</p></div></div><div class="cc-profile-col"><h3>Orígenes recurrentes</h3><div id="chart-subjects"><p class="empty-state">Cargando…</p></div></div></div>
+        </section>
+    </details>
+    <section class="cc-runs">
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">ACTIVIDAD DEL MODELO</p><h2>Análisis recientes</h2></div><a class="text-action" href="http-ejecuciones.html">Historial completo <span data-icon="arrow"></span></a></div>
+            <div class="table-scroll"><table class="event-table"><thead><tr><th>Registro analizado</th><th>Sucursal</th><th>Tipo</th><th>Estado</th><th class="num">Registros</th><th class="num">Atípicos</th><th class="num">% atípico</th><th>Fecha</th></tr></thead><tbody id="runs-body"><tr><td colspan="8" class="table-state">Cargando análisis…</td></tr></tbody></table></div></article>
+    </section>
+
+    <h2 class="section-title cc-section-break"><span data-icon="users"></span>Factor humano y prevención</h2>
+    <section class="kpi-grid kpi-grid-2 kpi-strip" aria-label="Indicadores de prevención">
+        <a class="kpi" href="cyberscore.html"><span class="kpi-label">CyberScore promedio</span><strong id="kpi-score">—</strong><small id="kpi-score-caption">Colaboradores evaluados</small></a>
+        <a class="kpi" href="cyberscore.html"><span class="kpi-label">Personas en nivel alto o crítico</span><strong id="kpi-people">—</strong><small id="kpi-people-caption">Del total evaluado</small></a>
+    </section>
+    <section class="dash-row row-1-1">
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">FACTOR HUMANO</p><h2>Distribución de niveles de riesgo</h2></div></div>
+            <div id="chart-levels"><p class="empty-state">Cargando…</p></div>
+            <h3 class="sub-title">Áreas con mayor proporción en riesgo alto o crítico</h3>
+            <div id="area-risk"><p class="empty-state">Cargando…</p></div>
+            <a class="text-action" href="seguimiento-preventivo.html">Ver seguimiento preventivo <span data-icon="arrow"></span></a></article>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">PREVENCIÓN</p><h2>Decisiones sugeridas</h2></div><span data-icon="compass"></span></div>
+            <div id="decision-list" class="priority-list" aria-live="polite"><p class="empty-state">Consultando sugerencias…</p></div>
+            <a class="text-action" href="http-ciclo.html">Ir a decisiones preventivas <span data-icon="arrow"></span></a></article>
+    </section>
+</main></div></div>
+</body></html>
