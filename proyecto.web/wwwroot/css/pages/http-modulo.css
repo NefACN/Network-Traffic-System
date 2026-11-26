@@ -1,0 +1,529 @@
+/* modulo de analisis HTTP, complementa http-analysis.css */
+:root {
+    --ml-atypical: #f0a35e;
+    --ml-accent: #75d8c4;
+    --ml-a: #7aa7ff;
+    --ml-b: #f0a35e;
+}
+
+.ml-caption {
+    margin: .25rem 0 1rem;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+.ml-empty {
+    color: var(--text-muted);
+}
+
+.ml-notice {
+    display: flex;
+    gap: .7rem;
+    align-items: flex-start;
+    padding: .8rem 1rem;
+    margin: 1rem 0;
+    border: 1px solid color-mix(in srgb, var(--ml-atypical) 45%, transparent);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--ml-atypical) 10%, transparent);
+    font-size: 13px;
+}
+
+.ml-notice .ui-icon {
+    flex-shrink: 0;
+    width: 20px;
+    color: var(--ml-atypical);
+}
+
+.ml-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .8rem;
+    padding: 0;
+    margin: 0 0 1rem;
+    list-style: none;
+}
+
+.ml-steps li {
+    display: grid;
+    gap: .2rem;
+    padding: .8rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.ml-steps span {
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+.ml-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .8rem;
+    margin-top: .8rem;
+}
+
+.ml-row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    align-items: center;
+    min-width: 150px;
+}
+
+.ml-advanced {
+    margin: .5rem 0;
+}
+
+.ml-advanced > summary {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.ml-advanced .http-context {
+    margin: .8rem 0;
+}
+
+.ml-advanced > label {
+    display: grid;
+    gap: .4rem;
+    margin: .7rem 0;
+    max-width: 320px;
+}
+
+.http-context label small {
+    color: var(--text-muted);
+    font-size: 11.5px;
+}
+
+.ml-check {
+    display: flex !important;
+    align-items: center;
+    gap: .5rem;
+}
+
+.ml-check input {
+    width: auto;
+}
+
+.ml-inline {
+    margin: 0 0 1rem;
+}
+
+.ml-inline-label {
+    display: inline-flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: 13px;
+}
+
+.ml-inline-label select {
+    width: auto;
+}
+
+.ml-selection {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.ml-run-header {
+    display: grid;
+    gap: .3rem;
+    margin: 0 0 1rem;
+}
+
+.ml-run-header small {
+    color: var(--text-muted);
+}
+
+#http-content .ml-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#http-content .metric.is-atypical strong {
+    color: var(--ml-atypical);
+}
+
+#http-content .metric.is-text strong {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+#ml-training .http-context {
+    align-items: start;
+}
+
+.ml-explainer {
+    margin: 0 0 1rem;
+    font-size: 13px;
+}
+
+.ml-explainer summary {
+    cursor: pointer;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    color: var(--text-muted);
+}
+
+.ml-explainer summary .ui-icon {
+    width: 18px;
+}
+
+.ml-explainer ul {
+    margin: .6rem 0 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: .3rem;
+}
+
+.ml-badge.ok {
+    color: var(--success);
+    border-color: color-mix(in srgb, var(--success) 50%, transparent);
+    background: var(--success-tint);
+}
+
+.ml-badge.info {
+    color: var(--ml-a);
+    border-color: color-mix(in srgb, var(--ml-a) 50%, transparent);
+    background: color-mix(in srgb, var(--ml-a) 12%, transparent);
+}
+
+.ml-badge.atypical {
+    color: var(--ml-atypical);
+    border-color: color-mix(in srgb, var(--ml-atypical) 55%, transparent);
+    background: color-mix(in srgb, var(--ml-atypical) 12%, transparent);
+}
+
+.ml-error-text {
+    color: var(--error) !important;
+}
+
+.ml-list {
+    margin: .5rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 12.5px;
+}
+
+#http-content tr.is-atypical-row td:first-child {
+    color: var(--ml-atypical);
+    font-weight: 600;
+}
+
+#http-content tr.is-alert-row td:first-child {
+    box-shadow: inset 3px 0 0 var(--ml-atypical);
+}
+
+/* barras por grupo */
+.ml-group-bars {
+    display: grid;
+    gap: .45rem;
+}
+
+a.ml-group-bar {
+    display: grid;
+    grid-template-columns: 90px minmax(40px, 1fr) 130px;
+    gap: 10px;
+    align-items: center;
+    margin: 0;
+    padding: .25rem .3rem;
+    border-radius: 6px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+a.ml-group-bar:hover {
+    background: color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+a.ml-group-bar.is-atypical .ml-group-name {
+    color: var(--ml-atypical);
+    font-weight: 600;
+}
+
+.ml-group-track {
+    height: 14px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--text) 8%, transparent);
+    overflow: hidden;
+}
+
+.ml-group-track > span {
+    display: block;
+    height: 100%;
+    min-width: 2px;
+    background: var(--group-color);
+}
+
+.ml-group-value {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+/* evolucion en el tiempo */
+.ml-timeline {
+    height: 170px;
+    display: flex;
+    gap: 2px;
+    align-items: flex-end;
+    margin: 1rem 0 .4rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.ml-timeline > div {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    min-width: 0;
+}
+
+.ml-tl-total {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    min-height: 1px;
+    background: color-mix(in srgb, var(--ml-accent) 55%, transparent);
+    border-radius: 2px 2px 0 0;
+    overflow: hidden;
+}
+
+.ml-tl-noise {
+    display: block;
+    width: 100%;
+    background: var(--ml-atypical);
+}
+
+.ml-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: .6rem;
+}
+
+.ml-legend i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: .35rem;
+    border-radius: 2px;
+}
+
+.ml-key-normal {
+    background: color-mix(in srgb, var(--ml-accent) 55%, transparent);
+}
+
+.ml-key-atypical {
+    background: var(--ml-atypical);
+}
+
+/* detalle de una peticion */
+.ml-dialog h3 {
+    margin: 1.2rem 0 .5rem;
+    font-size: 14px;
+}
+
+.ml-obs-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+}
+
+.ml-dialog .ml-details {
+    grid-template-columns: 200px 1fr;
+    gap: .4rem 1rem;
+    font-size: 13px;
+}
+
+.ml-dialog small {
+    color: var(--text-muted);
+}
+
+.ml-code {
+    display: block;
+    padding: .6rem .8rem;
+    margin: .4rem 0 .8rem;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--text) 7%, transparent);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+/* comparacion de periodos */
+.ml-period {
+    border-top: 3px solid var(--ml-a) !important;
+}
+
+.ml-period.ml-period-b {
+    border-top-color: var(--ml-b) !important;
+}
+
+.ml-period label {
+    display: grid;
+    gap: .4rem;
+    margin: .6rem 0;
+}
+
+.ml-compare-heads {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ml-compare-heads > div {
+    padding: .7rem 1rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--ml-a);
+    background: color-mix(in srgb, var(--ml-a) 8%, transparent);
+}
+
+.ml-compare-heads > .ml-period-b {
+    border-left-color: var(--ml-b);
+    background: color-mix(in srgb, var(--ml-b) 8%, transparent);
+}
+
+.ml-compare-heads small {
+    display: block;
+    color: var(--text-muted);
+}
+
+.ml-paired {
+    display: grid;
+    gap: .6rem;
+    margin: .6rem 0 1.2rem;
+}
+
+.ml-paired-row {
+    display: grid;
+    grid-template-columns: 110px minmax(60px, 1fr) 190px;
+    gap: 10px;
+    align-items: center;
+    font-size: 12.5px;
+}
+
+.ml-paired-bars {
+    display: grid;
+    gap: 3px;
+}
+
+.ml-paired-bars > span {
+    display: block;
+    height: 10px;
+    min-width: 2px;
+    border-radius: 3px;
+}
+
+.ml-bar-a {
+    background: var(--ml-a);
+}
+
+.ml-bar-b {
+    background: var(--ml-b);
+}
+
+.ml-paired-values {
+    color: var(--text-muted);
+}
+
+.ml-tag-a {
+    color: var(--ml-a);
+}
+
+.ml-tag-b {
+    color: var(--ml-b);
+}
+
+.ml-delta.up {
+    color: var(--ml-atypical);
+    font-weight: 600;
+}
+
+.ml-delta.down {
+    color: var(--success);
+    font-weight: 600;
+}
+
+/* reporte */
+.ml-report-doc {
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper-2);
+}
+
+.ml-report-doc h3 {
+    margin: 1.6rem 0 .6rem;
+}
+
+.ml-report-doc header .ml-details {
+    grid-template-columns: 120px 1fr;
+    gap: .3rem 1rem;
+    font-size: 13px;
+}
+
+.ml-report-doc footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+}
+
+@media (max-width: 960px) {
+    #http-content .ml-kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .ml-steps, .ml-compare-heads {
+        grid-template-columns: 1fr;
+    }
+
+    a.ml-group-bar {
+        grid-template-columns: 70px minmax(30px, 1fr) 100px;
+        font-size: 12px;
+    }
+
+    .ml-paired-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .ml-dialog .ml-details, .ml-report-doc header .ml-details {
+        grid-template-columns: 1fr;
+    }
+
+    .ml-report-doc {
+        padding: 1rem;
+    }
+
+    .ml-row-actions {
+        min-width: 0;
+    }
+}
+
+@media print {
+    body[data-page=http-reportes] #http-content > :not(#ml-report-doc) {
+        display: none !important;
+    }
+
+    .ml-report-doc {
+        border: 0;
+        padding: 0;
+        background: white !important;
+        color: #111 !important;
+    }
+
+    .ml-report-doc details {
+        display: none;
+    }
+}
